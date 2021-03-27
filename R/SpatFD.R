@@ -3,15 +3,15 @@ SpatFD=function(data,coords,basis="Bsplines",nbasis=4,lambda=0,nharm=NULL,vp=NUL
      #           VALIDANDO ARGUMENTOS *
      #----------------------------------------------------------------------------
      #all
-        if(missing(data)){
-                stop("Missing data")
-        }
-        if (missing(coords)){
-                stop("Missing coords")
-        }
-        if(missing(nharm) && missing(vp)){
-                stop("Missing nharm or vp")
-        }
+     if(missing(data)){
+          stop("Missing data")
+     }
+     if (missing(coords)){
+          stop("Missing coords")
+     }
+     if(missing(nharm) && missing(vp)){
+          stop("Missing nharm or vp")
+     }
 
      #data
      if(!(is.matrix(data) || is.array(data) || is.data.frame(data) ||is.fdSmooth(data)||is.fd(data))){
@@ -43,10 +43,10 @@ SpatFD=function(data,coords,basis="Bsplines",nbasis=4,lambda=0,nharm=NULL,vp=NUL
      if(cx!=fc){
           stop("Number of columns of data must be equal to number of rows of coords")
      }
-     
-     # basis and nharm 
+
+     # basis and nharm
      if(nbasis<nharm){
-             stop("Number of basis must be equal or greater than number of harmonics (nharn)")
+          stop("Number of basis must be equal or greater than number of harmonics (nharn)")
      }
 
      #basis
@@ -71,23 +71,23 @@ SpatFD=function(data,coords,basis="Bsplines",nbasis=4,lambda=0,nharm=NULL,vp=NUL
      if (!( is.null(vp)  || (is.numeric(vp)&& length(vp)==1))){
           stop("Wrong class of vp object")
      }
-     
+
      #add
      if(!(is.null(add) || inherits(add,"SpatFD"))){
           stop("Wrong class of add object")
      }
-     
+
      #name
      if (is.null(name)){
-             name=deparse(substitute(data))
+          name=deparse(substitute(data))
      }
      if (!(is.character(name)&& length(name)==1)){
-             stop("Wrong class of name object")
-     } 
-     if(name %in% names(add)){
-             stop("Change name, it already exists.")
+          stop("Wrong class of name object")
      }
-     
+     if(name %in% names(add)){
+          stop("Change name, it already exists.")
+     }
+
      #----------------------------------------------------------------------------
      #           DEJANDO LISTO PARA FPCA
      #----------------------------------------------------------------------------
@@ -95,14 +95,14 @@ SpatFD=function(data,coords,basis="Bsplines",nbasis=4,lambda=0,nharm=NULL,vp=NUL
 
      if(is.matrix(data) || is.array(data) || is.data.frame(data)){
           if(missing(basis)){
-                        message("Using Bsplines basis by default")
-                }
+               message("Using Bsplines basis by default")
+          }
           if(missing(nbasis)){
-                        message("Using 4 basis by default")
-                }
+               message("Using 4 basis by default")
+          }
           if(missing(lambda)){
-                        message("Using lambda = 0 by default")
-                }
+               message("Using lambda = 0 by default")
+          }
           Mdata=as.matrix(data)
           if(!is.numeric(Mdata)){
                stop("Object data is not numeric")

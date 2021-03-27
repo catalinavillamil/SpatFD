@@ -9,7 +9,7 @@
      %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-     SpatFD(data,coords,basis="Bsplines",nbasis=4,lambda=0,nharm=NULL,vp=NULL,add=NULL,...)
+     SpatFD(data,coords,basis="Bsplines",nbasis=4,lambda=0,nharm=NULL,vp=NULL,name=NULL,add=NULL,...)
      SpatFD(data, coords, nharm=NULL, add=NULL,...)
      SpatFD(data, coords, vp=NULL, add=NULL,...)
 }
@@ -22,6 +22,7 @@
      \item{lambda}{A non negative real number specifying the amount of smoothing to be applied to the estimated functional parameter. 0 by default}
      \item{nharm}{The number of harmonics or principal components to compute.}
      \item{vp}{The percentage of variance to calculate the number of harmonics or principal components to compute.}
+     \item{name}{Name of variable.}
      \item{add}{An object of class SpatFD to be added.}
      \item{...}{Arguments to be passed to the basis function creation (see create.bsplines.basis or create.fourier.basis).}
 }
@@ -42,7 +43,7 @@
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-     \seealso{ \code{\link{FKSK}}, \code{\link{FKCK}}, \code{\link{FCOK}}
+     \seealso{ \code{\link{KS_scores}}, \code{\link{scores}}, \code{\link{recons_fd}}
           %% ~~objects to See Also as \code{\link{help}}, ~~~
      }
 \examples{
@@ -51,9 +52,7 @@
      ##--	or do  help(data=index)  for the standard data sets.
 
      ## The function is currently defined as
-     function (x)
-     {
-     }
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

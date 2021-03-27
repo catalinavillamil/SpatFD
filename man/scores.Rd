@@ -8,18 +8,18 @@
 Scalar associated with functional principal components   that are a scalar spatial random field     %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-     scores(SFD)
+     scores(X)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-     \item{SFD}{Scalar associated with functional principal components   that are a scalar spatial random field.}
-     
+     \item{X}{ An object of class SpatFD or scores_pred, which are output of functions SpatFD or KS_scores.}
+
      %%     ~~Describe \code{x} here~~
 }
 
 
 \value{
-     \item{scores}{scores of object SFD.}
+     \item{scores}{Scalar associated with functional principal components that are a scalar spatial random field.}
      %%  ~Describe the value returned
      %%  If it is a LIST, use
      %%  \item{comp1 }{Description of 'comp1'}
@@ -34,7 +34,7 @@ Scalar associated with functional principal components   that are a scalar spati
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-     \seealso{\code{\link{SpatFD}}
+     \seealso{\code{\link{SpatFD}},\code{\link{KS_scores}}
           %% ~~objects to See Also as \code{\link{help}}, ~~~
      }
 \examples{
