@@ -1,5 +1,5 @@
 recons_fd = function(X){
-    
+  
   if (inherits(X,"scores_pred")) {
     vari=X$vari
     a=scores(X)
@@ -12,6 +12,5 @@ recons_fd = function(X){
     stop("Wrong class scores_pred")
   }
   return(result)
-  
 }
 
