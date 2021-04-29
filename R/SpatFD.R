@@ -32,7 +32,7 @@ SpatFD=function(data,coords,basis="Bsplines",nbasis=4,lambda=0,nharm=NULL,vp=NUL
      #Coincidan tamaños
      if(is.matrix(data)||is.data.frame(data)|| is.array(data)){
           cx=dim(data)[2]
-     }else if(is.fdSmooth){
+     }else if(is.fdSmooth(data)){
           cx=dim(data$fd$coefs)[2]
      }else if(is.fd(data)){
           cx=dim(data$coefs)[2]
