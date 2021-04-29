@@ -1,4 +1,4 @@
-KS_scores=function(SFD, newcoords,model,vari=NULL,fill.all=NULL){
+KS_scores=function(SFD, newcoords,model,name=NULL,fill.all=NULL){
 
      # Validation --------------------------------------------------------------
 
@@ -27,7 +27,7 @@ KS_scores=function(SFD, newcoords,model,vari=NULL,fill.all=NULL){
      }
 
      # messages default values
-     if(missing(vari)){
+     if(missing(name)){
           message("Using first variable by default")
      }
      if(missing(fill.all)){
@@ -35,19 +35,19 @@ KS_scores=function(SFD, newcoords,model,vari=NULL,fill.all=NULL){
      }
 
      #vari
-     if(is.null(vari)){
-          vari=1
-     } else if ((is.character(vari)&& length(vari)==1)){
-          if (length(which(names(SFD)==vari))==1){
-               vari=which(names(SFD)==vari)
-          }else if (length(which(names(SFD)==vari))==0){
-               stop(paste(vari,"doesn't not exists. Change vari for an existing variable name."))
-          }else if (length(which(names(SFD)==vari))==0){
-               stop("There are more than one variable with the same name")
+     if(is.null(name)){
+          name=1
+     } else if ((is.character(name)&& length(name)==1)){
+          if (length(which(names(SFD)==name))==1){
+               name=which(names(SFD)==name)
+          }else if (length(which(names(SFD)==name))==0){
+               stop(paste(name,"doesn't not exists. Change name for an existing nameable name."))
+          }else if (length(which(names(SFD)==name))==0){
+               stop("There are more than one nameable with the same name")
           }
      }
-     if ((is.null(vari)  || !(is.numeric(vari)&& length(vari)==1))){
-          stop("Wrong class of vari object")
+     if ((is.null(name)  || !(is.numeric(name)&& length(name)==1))){
+          stop("Wrong class of name object")
      }
 
      #fill.all
@@ -63,9 +63,9 @@ KS_scores=function(SFD, newcoords,model,vari=NULL,fill.all=NULL){
           stop("Wrong class of model, model should be of class variogramModel or a list of them (use vgm of gstat package) ")
      }else if(inherits(model,"list") && !all(lapply(model,inherits,"variogramModel"))){
           stop("Wrong class of model, each element of list should be of class variogramModel (use vgm of gstat package)")
-     }else if(inherits(model,"list") && (length(model)!=ncol(as.data.frame(SFD[[vari]]$fpca$scores)))){
+     }else if(inherits(model,"list") && (length(model)!=ncol(as.data.frame(SFD[[name]]$fpca$scores)))){
           stop("length of list of models must be equal to number of harmonics of the choosen variable ")
-     }else if(inherits(model,"variogramModel") && !(fill.all || (ncol(as.data.frame(SFD[[vari]]$fpca$scores))==1))){
+     }else if(inherits(model,"variogramModel") && !(fill.all || (ncol(as.data.frame(SFD[[name]]$fpca$scores))==1))){
           stop("If model is not a list and there are more than one nharm of that variable, then fill.all must be TRUE or you can create a list of models with the same number of harmonics")
      }
 
@@ -73,10 +73,10 @@ KS_scores=function(SFD, newcoords,model,vari=NULL,fill.all=NULL){
      # Kriging -----------------------------------------------------------------
 
      #scores
-     puntaje=SFD[[vari]]$fpca$scores
-     rownames(puntaje)=SFD[[vari]]$coordsnames
+     puntaje=SFD[[name]]$fpca$scores
+     rownames(puntaje)=SFD[[name]]$coordsnames
      puntajes=as.data.frame(puntaje)
-     coordinates(puntajes)=SFD[[vari]]$coords
+     coordinates(puntajes)=SFD[[name]]$coords
 
      #fitting variogram
      if(fill.all==T){
@@ -119,7 +119,7 @@ KS_scores=function(SFD, newcoords,model,vari=NULL,fill.all=NULL){
      rownames(pred)=rownames(newcoords)
 
      #Output
-     out=list(SFD=SFD,scores_pred=pred,vari=vari)
+     out=list(SFD=SFD,scores_pred=pred,name=name)
      class(out)="scores_pred"
      return(out)
 }
